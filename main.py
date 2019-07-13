@@ -18,8 +18,11 @@ def main():
             result = BaseExecutor().execute()
     except Exception as error: 
         result = BaseExecutor().result(None, str(error), 1)
-    
-    print(result)
+    finally:
+        if result:
+            print(result)
+            with open("result.json", "w") as f:
+                f.write(result)
 
 
 if __name__ == "__main__":

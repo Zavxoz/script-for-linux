@@ -38,8 +38,8 @@ class BaseExecutor(object):
             'error': error,
             'result': result_dict
         }
-        json_data = json.dumps(as_dict, sort_keys=True,
-                               indent=4, separators=(',', ': '))
+        json_data = json.dumps(as_dict, sort_keys = False,
+                               indent = 4, separators = (',', ': '))
         return json_data
 
 

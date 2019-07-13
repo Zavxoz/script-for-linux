@@ -15,14 +15,15 @@ class BaseParser(object):
     def make_dict_from_string(self):
         pattern = re.compile(self.template)
         matched_data = re.findall(pattern, self.string.decode("utf-8"))
+        i = 0
         for single_match in matched_data:
             inserted_dict = {}
-            i = 0
+            j = 0
+            i += 1
             for name in self.keys_for_dict:
-                inserted_dict[name] = single_match[i]
-                i += 1
-            filesystem_name = "Filesystem '{}' mounted on '{}'".\
-                format(single_match[0], single_match[-1])
+                inserted_dict[name] = single_match[j]
+                j += 1
+            filesystem_name = i 
             self.output_dict[filesystem_name] = inserted_dict
         return self.output_dict
 
