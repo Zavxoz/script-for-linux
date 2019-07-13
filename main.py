@@ -1,8 +1,9 @@
-from subprocess import Popen, PIPE
 import json
 import argparse
 import re
 from executors import HumanExecutor, InodeExecutor, BaseExecutor
+
+
 def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--human", action = 'store', 
@@ -12,12 +13,13 @@ def main():
     try:
         args = parser.parse_args()
         if args.human:
-            result = HumanExecutor.execute()  
+            result = HumanExecutor().execute()  
         elif args.inode:
-            result = InodeExecutor.execute()
+            result = InodeExecutor().execute()
         else:
             result = BaseExecutor().execute()
     except Exception as error: pass
+        
     finally :pass
 
 
