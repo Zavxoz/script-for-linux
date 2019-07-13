@@ -1,15 +1,19 @@
 from subprocess import Popen, PIPE
 from parsers import BaseParser, HumanParser, InodeParser
+import json
 
 class BaseExecutor(object):
     def __init__(self, cmd = 'df', *args):
         self.cmd = cmd
-        self.args = '-h'
+        self.args = args
         self.parser = BaseParser
 
 
     def command_maker(self):
-        return list(self.cmd).extend([arg for arg in self.args])
+        tmp = []
+        tmp.append(self.cmd)
+        tmp.extend([arg for arg in self.args])
+        return tmp
 
 
     def execute(self):

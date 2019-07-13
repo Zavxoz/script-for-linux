@@ -1,14 +1,12 @@
-import json
 import argparse
-import re
 from executors import HumanExecutor, InodeExecutor, BaseExecutor
 
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--human", action = 'store', 
+    parser.add_argument("--human", action = 'store_true', 
                                     help = "Display filesystems statistics in human-readable format")
-    parser.add_argument("--inode", action = 'store', 
+    parser.add_argument("--inode", action = 'store_true', 
                                     help = "Getting information about inode's in a filesystems")
     try:
         args = parser.parse_args()
@@ -18,9 +16,10 @@ def main():
             result = InodeExecutor().execute()
         else:
             result = BaseExecutor().execute()
-    except Exception as error: pass
-        
-    finally :pass
+    except Exception as error: 
+        result = BaseExecutor().result(None, str(error), 1)
+    
+    print(result)
 
 
 if __name__ == "__main__":
