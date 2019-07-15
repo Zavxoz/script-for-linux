@@ -4,19 +4,19 @@ from executors import HumanExecutor, InodeExecutor, BaseExecutor
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--human", action = 'store_true', 
-                                    help = "Display filesystems statistics in human-readable format")
-    parser.add_argument("--inode", action = 'store_true', 
-                                    help = "Getting information about inode's in a filesystems")
+    parser.add_argument("--human", action='store_true',
+                        help="Display filesystems statistics in human-readable format")
+    parser.add_argument("--inode", action='store_true',
+                        help="Getting information about inode's in a filesystems")
     try:
         args = parser.parse_args()
         if args.human:
-            result = HumanExecutor().execute()  
+            result = HumanExecutor().execute()
         elif args.inode:
             result = InodeExecutor().execute()
         else:
             result = BaseExecutor().execute()
-    except Exception as error: 
+    except Exception as error:
         result = BaseExecutor().result(None, str(error), 1)
     finally:
         if result:
