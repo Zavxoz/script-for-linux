@@ -40,7 +40,7 @@ class BaseExecutor(object):
             'result': result_dict
         }
         json_data = json.dumps(as_dict, sort_keys=False,
-                               ident=4, separators=(',', ': '))
+                            indent=4, separators=(',', ': '))
         return json_data
 
 
