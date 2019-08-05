@@ -2,16 +2,17 @@ import re
 
 
 class BaseParser(object):
+    '''class to make dictionary from output of df command'''
     def __init__(self, string):
         self.string = string
         self. output_dict = {}
         self.keys_for_dict = ['Filesystem', '1K-blocks', 'Used',
                               'Available', 'Use%', 'Mounted on']
-        self.template = (r'(?P<first>\S+)\s*(?P<second>\d+)\s*'
-                         r'(?P<third>\d+)\s*(?P<fourth>\d+)\s*'
-                         r'(?P<fifth>\d+[%])\s*(?P<sixth>\S+)')
+        self.template = '(?P<first>\S+)\s*(?P<second>\d+)\s*?P<third>\d+)\s*\
+                        (?P<fourth>\d+)\s*?P<fifth>\d+[%])\s*(?P<sixth>\S+)'
 
     def make_dict_from_string(self):
+    '''find all occurrences of pattern and make dict with them'''
         pattern = re.compile(self.template)
         matched_data = re.findall(pattern, self.string)
         i = 0
@@ -28,6 +29,7 @@ class BaseParser(object):
 
 
 class HumanParser(BaseParser):
+    '''class to make dict from output of df command with -h parameter'''
     def __init__(self, string):
         super(HumanParser, self).__init__(string)
         self.string = string
@@ -39,6 +41,7 @@ class HumanParser(BaseParser):
 
 
 class InodeParser(BaseParser):
+    '''class to make dict from output of df command with -i parameter'''
     def __init__(self, string):
         super(InodeParser, self).__init__(string)
         self.string = string

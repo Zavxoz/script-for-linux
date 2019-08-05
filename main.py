@@ -3,11 +3,14 @@ from executors import HumanExecutor, InodeExecutor, BaseExecutor
 
 
 def main():
+    '''Command line utility which execute and parse df command'''
     parser = argparse.ArgumentParser()
     parser.add_argument("--human", action='store_true',
-                        help="Display filesystems statistics in human-readable format")
+                        help="Display filesystems statistics\
+                                   in human-readable format")
     parser.add_argument("--inode", action='store_true',
-                        help="Getting information about inode's in a filesystems")
+                        help="Getting information about inode's\
+                                           in a filesystems")
     try:
         args = parser.parse_args()
         if args.human:
