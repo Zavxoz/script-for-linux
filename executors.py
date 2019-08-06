@@ -50,12 +50,12 @@ class BaseExecutor(object):
 class HumanExecutor(BaseExecutor):
     '''class to execute command with argument -h'''
     def __init__(self):
-        super(HumanExecutor, self).__init__('df', '-h')
+        super().__init__('df', '-h')
         self.parser = HumanParser
 
 
 class InodeExecutor(BaseExecutor):
     '''class to execute command with argument -i'''
     def __init__(self):
-        super(InodeExecutor, self).__init__('df', '-i')
+        super().__init__('df', '-i')
         self.parser = InodeParser

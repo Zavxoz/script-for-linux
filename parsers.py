@@ -31,7 +31,7 @@ class BaseParser(object):
 class HumanParser(BaseParser):
     '''class to make dict from output of df command with -h parameter'''
     def __init__(self, string):
-        super(HumanParser, self).__init__(string)
+        super().__init__(string)
         self.string = string
         self.keys_for_dict = ['Filesystem', 'Size', 'Used',
                               'Avail', 'Use%', 'Mounted on']
@@ -43,7 +43,7 @@ class HumanParser(BaseParser):
 class InodeParser(BaseParser):
     '''class to make dict from output of df command with -i parameter'''
     def __init__(self, string):
-        super(InodeParser, self).__init__(string)
+        super().__init__(string)
         self.string = string
         self.keys_for_dict = ['Filesystem', 'Inodes', 'IUsed',
                               'IFree', 'IUse%', 'Mounted on']
